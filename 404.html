@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Easter Bunny's Journey Tracking 🐰🗺️</title>
+
+<link rel="icon" type="image/png" href="icon.png">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Material Symbols -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Google Sans', sans-serif;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        .container {
+            max-width: 800px;
+            padding: 1rem;
+        }
+
+        .page-title {
+            font-family: 'Fredoka', sans-serif;
+            color: #ff69b4;
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .message {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
+        }
+
+        .message p {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .message img {
+            width: 50px;
+            height: 50px;
+            margin: 1rem 0;
+        }
+
+        .back-button {
+            background: linear-gradient(45deg, #ff69b4, #ff8c00);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin: 0.5rem 0;
+        }
+
+        .back-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .back-button .material-symbols-rounded {
+            font-size: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .message {
+                padding: 1.5rem;
+            }
+
+            .message p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Container to hold the content -->
+    <div class="container">
+        <h1 class="page-title">404 - Oops! 🐰</h1>
+        <div class="message">
+            <p>Looks like you took the wrong hop and landed on a page we couldn't find!</p>
+            <p>Don't worry, the Easter Bunny is here to help you get back on track.</p>
+            <img src="https://cdn-icons-png.flaticon.com/512/7226/7226220.png" alt="Easter Bunny">
+            <a href="index.html" class="back-button">
+                <span class="material-symbols-rounded">arrow_back</span>
+                Back to Tracker
+            </a>
+        </div>
+    </div>
+</body>
+</html>

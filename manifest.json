@@ -1,0 +1,27 @@
+{
+  "name": "Easter Bunny's Journey Tracking",
+  "short_name": "Bunny Tracking",
+  "description": "Track the Easter Bunny's magical journey around the world! 🐰🗺️",
+  "start_url": "/bunny-journey-tracking/",
+  "display": "standalone",
+  "background_color": "#ff69b4",
+  "theme_color": "#ff69b4",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/bunny-journey-tracking/icon.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "/bunny-journey-tracking/icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/bunny-journey-tracking/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

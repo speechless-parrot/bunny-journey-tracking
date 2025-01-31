@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>❓ FAQ - Easter Bunny's Journey Tracking 🐰🗺️</title>
+
+<link rel="icon" type="image/png" href="icon.png">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<!-- Add this in the <head> section -->
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Material Symbols -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    
+    <style>
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Google Sans', sans-serif;
+    line-height: 1.6;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* Container Styles */
+.faq-container {
+    max-width: 1200px;
+    margin: 5rem auto 2rem; /* Added top margin for back button */
+    padding: 1rem;
+}
+
+/* Page Title */
+.page-title {
+    font-family: 'Fredoka', sans-serif;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #ff69b4;
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+/* Back Button */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: linear-gradient(45deg, #ff69b4, #ff8c00);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    z-index: 1000;
+}
+
+.back-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.back-button .material-symbols-rounded {
+    font-size: 20px;
+}
+
+/* Section Styles */
+.faq-section {
+    margin-bottom: 2rem;
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.faq-section:hover {
+    transform: translateY(-2px);
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    background: linear-gradient(45deg, #ff69b4, #ff8c00);
+    color: white;
+}
+
+.section-header .material-symbols-rounded {
+    font-size: 2rem;
+    margin-right: 1rem;
+}
+
+.section-header h2 {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+/* Question Styles */
+.faq-item {
+    border-bottom: 1px solid #eee;
+}
+
+.faq-item:last-child {
+    border-bottom: none;
+}
+
+.faq-question {
+    display: flex;
+    align-items: center;
+    padding: 1.25rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.faq-question:hover {
+    background-color: #f8f8f8;
+}
+
+.faq-question .material-symbols-rounded {
+    margin-right: 1rem;
+    color: #ff69b4;
+    font-size: 1.5rem;
+}
+
+.faq-question h3 {
+    font-family: 'Fredoka', sans-serif;
+    flex-grow: 1;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-right: 1rem;
+}
+
+.faq-question .toggle-icon {
+    margin-left: auto;
+    transition: transform 0.3s ease;
+    color: #666;
+}
+
+.faq-question.active {
+    background-color: #f8f8f8;
+}
+
+.faq-question.active .toggle-icon {
+    transform: rotate(180deg);
+    color: #ff69b4;
+}
+
+/* Answer Styles */
+.faq-answer {
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    background-color: #f8f8f8;
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+.faq-answer.show {
+    padding: 1.25rem;
+    padding-left: 3.5rem;
+    max-height: 2000px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Link Styles */
+.faq-answer a {
+    color: #ff69b4;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.faq-answer a:hover {
+    color: #ff8c00;
+    text-decoration: underline;
+}
+
+/* List Styles in Answers */
+.faq-answer ul, .faq-answer ol {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.faq-answer li {
+    margin-bottom: 0.5rem;
+}
+
+/* Code Block Styles */
+.faq-answer code {
+    background-color: #f1f1f1;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.9em;
+}
+
+/* Emphasis Styles */
+.faq-answer strong {
+    color: #333;
+    font-weight: 600;
+}
+
+/* Table Styles */
+.faq-answer table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+.faq-answer th, .faq-answer td {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.faq-answer th {
+    background-color: #f8f8f8;
+    font-weight: 600;
+}
+
+/* Quote Styles */
+.faq-answer blockquote {
+    border-left: 4px solid #ff69b4;
+    margin: 1rem 0;
+    padding: 0.5rem 1rem;
+    background-color: #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .faq-container {
+        padding: 1rem;
+        margin-top: 4rem;
+    }
+
+    .page-title {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .back-button {
+        top: 10px;
+        left: 10px;
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+
+    .section-header {
+        padding: 1rem;
+    }
+
+    .section-header h2 {
+        font-size: 1.25rem;
+    }
+
+    .section-header .material-symbols-rounded {
+        font-size: 1.5rem;
+    }
+
+    .faq-question {
+        padding: 1rem;
+    }
+
+    .faq-question h3 {
+        font-size: 1rem;
+    }
+
+    .faq-answer.show {
+        padding: 1rem;
+        padding-left: 2.5rem;
+    }
+
+    .faq-question .material-symbols-rounded {
+        font-size: 1.25rem;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .back-button {
+        display: none;
+    }
+
+    .faq-container {
+        margin: 0;
+        padding: 0;
+    }
+
+    .faq-answer {
+        max-height: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        display: block !important;
+    }
+
+    .faq-question .toggle-icon {
+        display: none;
+    }
+}
+
+/* Animation Keyframes */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Accessibility Improvements */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* Focus Styles */
+.faq-question:focus {
+    outline: 2px solid #ff69b4;
+    outline-offset: -2px;
+}
+
+.back-button:focus {
+    outline: 2px solid #ff69b4;
+    outline-offset: 2px;
+}
+
+/* Loading State */
+.faq-section.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+    </style>
+</head>
+<body>
+    <!-- Back to Tracker Button -->
+    <a href="index.html" class="back-button">
+        <span class="material-symbols-rounded">arrow_back</span>
+        Back to Tracker
+    </a>
+<div class="faq-container">
+    <h1 class="page-title">🐰 Easter Bunny Tracker FAQ ❓</h1>
+
+    <!-- Easter Calendar Section -->
+    <div class="faq-section">
+        <div class="section-header">
+            <span class="material-symbols-rounded">calendar_month</span>
+            <h2>Easter Calendar FAQs</h2>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">event</span>
+                <h3>When is Easter 2025?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                Easter 2025 is on April 20th, which means the Easter Bunny will start his journey on April 19th. That's when we'll start tracking his every hop—don't miss it!
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">brightness_4</span>
+                <h3>Why does the date for Easter change every year?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                Easter changes every year because it follows the lunar calendar. It's based on the first Sunday after the first full moon that comes after the Spring Equinox (around March 21st). So depending on the moon, Easter can be anywhere between March 22nd and April 25th!
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">date_range</span>
+                <h3>When is the earliest and latest Easter can happen?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                The earliest Easter can ever happen is March 22nd, and the latest it can fall is April 25th. This is all because of how Easter's date is tied to the moon and the equinox!
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">schedule</span>
+                <h3>Does the Easter Bunny always start his journey the day before?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                Yes! The Easter Bunny is a busy hopper, so he starts his journey the day before Easter Sunday to make sure every basket is filled by morning. For 2025, he'll start on April 19th—make sure you're ready to track him!
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">public</span>
+                <h3>Is Easter the same date worldwide?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                Not exactly! Most people celebrate Easter on the same day, but some churches, like those following the Eastern Orthodox calendar, might have a different date, known as Orthodox Easter. Their Easter is based on a slightly different formula tied to the Julian calendar, not the Gregorian one most of us use.
+            </div>
+        </div>
+    </div>
+
+    <!-- Easter Bunny Tracker Section -->
+    <div class="faq-section">
+        <div class="section-header">
+            <span class="material-symbols-rounded">track_changes</span>
+            <h2>Easter Bunny Tracker FAQs</h2>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">timer</span>
+                <h3>When does the Easter Bunny tracker start this year?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                For 2025, the Easter Bunny starts making his final preparations on April 19th at:<br><br>
+                
+                🇺🇸 3:30 AM in New York<br>
+                🇦🇺 7:30 PM in Sydney<br>
+                🇯🇵 5:30 PM in Tokyo<br>
+                🇬🇧 9:30 AM in London (due to the clocks moving forward an hour on March 30th)<br><br>
+                
+                At this time, we'll begin pre-tracking the Easter Bunny! Click the clock icon at the top right for a full-screen countdown to liftoff.<br><br>
+                
+                The Easter Bunny officially lifts off from Easter Island 1.5 hours later, and that's when we start tracking his actual journey! The Bunny returns home to Easter Island on April 20th at:<br><br>
+                
+                🇺🇸 6:10 AM in New York<br>
+                🇦🇺 10:10 PM in Sydney<br>
+                🇯🇵 8:10 PM in Tokyo<br>
+                🇬🇧 12:10 PM in London (due to the clocks moving forward an hour on March 30th)
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">home</span>
+                <h3>When will the Easter Bunny arrive at my home?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                The Easter Bunny usually arrives at your home between 9 PM and 2 AM local time. You can check the tracker for an estimated arrival time! If no time shows up in the stats at the bottom, make sure to enable this feature in the tracker's settings!
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">flight_takeoff</span>
+                <h3>What is the first and last place the Easter Bunny visits?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                The Easter Bunny's first stops are in the islands of Kiribati and Tuvalu, starting with London, Kiribati (not the UK one!) just 5 minutes after departing Easter Island.<br><br>
+                The Bunny finishes his journey about 25 hours later, visiting French Polynesia and the Pitcairn Islands last. His final stop is in Adamstown, Pitcairn Islands, 5 minutes before he delivers baskets to Hanga Roa, Easter Island (and others in Easter Island), 5 minutes before returning home at the Workshop.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">satellite_alt</span>
+                <h3>How do you track the Easter Bunny?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                We use real-time satellite imagery and more magical advanced modern tech to track the Easter Bunny with incredible accuracy. This allows us to provide real-time updates of the Easter Bunny's whereabouts, coming in every second so you're always in the loop!
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">refresh</span>
+                <h3>Do I need to refresh the tracker to get updates?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                Nope! The tracker updates automatically every second. You don't need to refresh or set up anything extra—just sit back and watch the magic happen!
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">map</span>
+                <h3>Why does the map sometimes show grey tiles for a sec? It's annoying!</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                That's just the map tiles loading. Unfortunately, we haven't found a way to pre-load them or make it smoother yet, but you can minimize it by zooming out a bit.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">location_city</span>
+                <h3>Why did the Easter Bunny skip my city?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                Unfortunately, it's impossible for the Easter Bunny to visit every city on Earth. He skips some larger cities near others, while making plenty of stops in smaller or remote towns. Even if your city isn't marked, don't worry—every home still gets baskets! If nearby cities have basket (not carrot) icons, the Easter Bunny has likely been to your home, too.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">info</span>
+                <h3>How can I learn more about cities the Easter Bunny visits?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                Look for basket and carrot icons on the map:<br><br>
+                🥕 Carrots = places the Bunny hasn't visited yet.<br>
+                🧺 Baskets = places he's already been.<br><br>
+                Click these icons to learn more about the stop! You'll see stats like the baskets delivered, population, the Bunny's arrival time, and even a snippet from the city's Wikipedia article (with a link to the full page).
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">fullscreen</span>
+                <h3>Can I make the tracker fullscreen?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                Absolutely! Here's 3 methods you can do it:<br><br>
+                1️⃣ Use the fullscreen button at the top right of the tracker. Click again to exit fullscreen.<br>
+                2️⃣ Add the tracker to your mobile homescreen to open it in an app-like experience. On Safari, tap the share icon; on Chrome (for iOS you need to use Safari), click the three dots in the top-right, then look for "Add to homescreen."<br>
+                3️⃣ Use your browser's native fullscreen mode (e.g., pressing F11 on most browsers). However, this can sometimes result in tabs and other content being visible, so for the best experience, use the tracker's built-in fullscreen button if possible!<br><br>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">dark_mode</span>
+                <h3>Can I use the tracker in dark mode?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+Yes, you can! Simply go to the settings by clicking the gear icon at the top right of the tracker. From there, enable dark mode. This will change the map style to a darker theme and switch the rest of the tracker to dark mode, making it easier on the eyes for those late-night tracking sessions!
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">schedule</span>
+                <h3>How accurate is the estimated arrival time?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                The arrival time is based on the estimated time until the arrival of the Bunny's closest stop to your location, so it's pretty accurate! It'll give you a good idea of when to expect the Bunny.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">lock</span>
+                <h3>Why can't I explore the map freely?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                The map stays centered on the Easter Bunny by default. To explore freely, click the lock icon at the top right to unlock the map and unfollow him. You can lock it again to refocus on the Bunny.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">celebration</span>
+                <h3>What happens after tracking is complete?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                Once the Bunny's journey ends, the tracker still stays open year-round, with the countdown resetting for next year's takeoff a week after! You can explore all the different places the Easter Bunny visited, see how many baskets were delivered, how many carrots were eaten, and even the total distance traveled.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">settings</span>
+                <h3>Can I customize the tracker settings?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                Yes! Click the settings icon at the top right to:<br><br>
+                🌸 Hide or show certain metrics.<br>
+                🌸 Change distance/speed unit.<br>
+                🌸 Switch the temperature unit.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">devices</span>
+                <h3>Can I track the Easter Bunny on multiple devices?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                Yes! You can track the Easter Bunny on any device that has an internet connection—whether it's your phone, tablet, or computer. Just open the tracker in your browser, and you'll be able to follow his journey from wherever you are!
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">route</span>
+                <h3>How can I see how far the Easter Bunny has traveled?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                You can view the total distance traveled at the bottom of the tracker screen. We keep track of every hop the Easter Bunny makes, so you can see exactly how many miles (or kilometers if you change it in the settings) he's covered on his global journey.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">update</span>
+                <h3>Can I track the Easter Bunny before Easter Eve?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                You won't be able to track the Easter Bunny's real-time movements until April 19th (as he's not on his journey yet so we can't track him), but feel free to check out the countdown clock to get ready for liftoff. You can also explore the map to see all the different places the Bunny will visit.
+            </div>
+        </div>
+    </div>
+
+<!-- Easter Bunny Section -->
+    <div class="faq-section">
+        <div class="section-header">
+            <span class="material-symbols-rounded">cruelty_free</span>
+            <h2>Easter Bunny FAQs</h2>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">magic_button</span>
+                <h3>Is the Easter Bunny real?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                Yes, the Easter Bunny is very real! While many people think of him as a symbol of Easter, he's also a magical being that has been delivering baskets and eggs to children all over the world for centuries. His magic powers and boundless energy allow him to make his rounds quickly, ensuring that every child gets their Easter goodies. It's a time-honored tradition that brings joy and excitement to millions of families, and as long as you believe in the magic of Easter, the Easter Bunny will always be with us!
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">hourglass_top</span>
+                <h3>How old is the Easter Bunny?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                The Easter Bunny's age is a bit of a mystery! Since he's magical, he doesn't really age the same way humans do. Some stories say he's been around for hundreds of years, while others claim he was around even before Easter traditions started. In any case, he's timeless! The Easter Bunny is a symbol of renewal and spring, always keeping up with the times while spreading joy wherever he goes. The fact that he looks so youthful every year is a testament to his magical abilities!
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">cottage</span>
+                <h3>Where does the Easter Bunny live?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                The Easter Bunny lives in his magical workshop hidden on Easter Island, a remote place in the Pacific Ocean. This workshop is where the Bunny's helpers prepare all the baskets and eggs, ensuring that everything is ready for his worldwide journey. The Easter Bunny's home is filled with vibrant colors, bouncy environments, and a huge team of magical creatures who assist him in making sure the delivery process goes smoothly. Some people even say he has a secret tunnel system that leads directly to the homes of children around the world!
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">group</span>
+                <h3>Does the Easter Bunny have helpers?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                Absolutely! The Easter Bunny has a whole team of magical helpers who assist with making and preparing the Easter baskets, painting eggs, and organizing the deliveries. Some of these helpers are other magical creatures, like elves or fairy-like beings, and others are enchanted animals that live on Easter Island. Each helper has a special role in the Bunny's operation. From painting eggs to coordinating the global delivery routes, the Easter Bunny's helpers make sure everything is ready for his big journey. Without them, delivering billions of baskets would be impossible!
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">rocket_launch</span>
+                <h3>How does the Easter Bunny travel around the world in just 25 hours?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                The Easter Bunny travels at supernatural speeds! Thanks to his magical powers and the use of high-tech, enchanted sleighs, he can travel faster than the speed of light. On his journey, the Bunny can shift time, crossing continents and oceans in mere seconds. While he uses traditional modes of transportation, like hopping and flying, his magic allows him to warp through time zones and make his deliveries in just 25 hours. Some people say the Bunny's speed is so fast, it seems like he can be in multiple places at once! The trick is all about using magic to manipulate time and space so that he can keep up with his tight schedule.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">shopping_basket</span>
+                <h3>Do those on Easter Island get baskets and eggs too?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                Yes! Everyone on Easter Island, including the magical creatures that help the Easter Bunny, gets their share of baskets and eggs. Easter Island might be the starting point for the Bunny's journey, but it's also where the Bunny and his helpers prepare for the big night. Before he returns to the Workshop after delivering billions of baskets worldwide, the Easter Bunny makes sure to hop around the island and spread some Easter joy there as well. So, the magical island is just as much a part of the celebration as anywhere else!
+            </div>
+        </div>
+<div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">speed</span>
+                <h3>How fast does the Easter Bunny hop around the world?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                The Easter Bunny can travel at incredibly high speeds, far faster than any vehicle or airplane. In urban areas, the Bunny can zip around at speeds of about 750 mph (1200 km/h), but when he's flying across the ocean or traveling through less populated areas, he can reach 40,000 mph (64,000 km/h) or even faster! This means he can easily make stops in cities and remote locations all over the world in just 25 hours. His magical speed is key to completing his global mission on time, delivering Easter baskets to every child, no matter how far away they are.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">search</span>
+                <h3>How can I catch the Easter Bunny?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                We highly recommend against trying to catch the Easter Bunny! He's incredibly fast and elusive, and if you try to catch him, you may accidentally scare him off and miss your Easter basket entirely! The Easter Bunny has a lot of work to do, and he doesn't like being interrupted. Plus, the magic that allows him to deliver baskets is sensitive, and trying to catch him might interfere with his abilities. It's best to just enjoy the fun and let the Easter Bunny do his magic without being caught. Remember, it's all about the spirit of Easter surprise!
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">restaurant</span>
+                <h3>Should I leave anything out for the Easter Bunny?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                While the Easter Bunny doesn't need anything to deliver baskets and eggs, he does enjoy a nice snack along the way! If you'd like to leave something out, carrots are the Bunny's favorite food. It gives him the energy to keep hopping all night and ensures he can stay on schedule. So, leaving a fresh carrot or two out for the Easter Bunny is a kind and thoughtful gesture. He'll appreciate it as he makes his rounds!
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">inventory_2</span>
+                <h3>How many baskets does the Easter Bunny deliver?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                The Easter Bunny will deliver approximately 7.7 billion baskets this year. That's a lot of hopping! Every year, the Bunny travels all over the world to ensure that every child gets an Easter basket filled with goodies. This impressive number means the Bunny is hopping from country to country, from city to city, to make sure no child is forgotten. You can keep an eye on the real-time count of baskets being delivered through the Easter Bunny Tracker and watch how the magic unfolds!
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">nutrition</span>
+                <h3>How many carrots does the Easter Bunny eat while delivering baskets?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                The Easter Bunny munches through 69 million carrots as he makes his way around the world. Each carrot provides him with the energy he needs to keep going. Despite all these carrots, the Easter Bunny somehow manages to avoid turning orange—his magical metabolism helps him stay his fluffy, lovable self! You can track the real-time carrot consumption on the Easter Bunny Tracker too!
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">route</span>
+                <h3>How much distance does the Easter Bunny travel around the world delivering baskets?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                The Easter Bunny travels over 485,000 km (300,000 miles) in total on his journey, making stops in cities, towns, and villages all over the world. That's a distance that could take humans over 20 days to cover by car! The Bunny's speed and magic allow him to cover this massive distance in just one night, ensuring that all his deliveries are made in record time.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">public</span>
+                <h3>Does the Easter Bunny only deliver to those on Earth?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+No, the Easter Bunny doesn't just deliver to Earth! While he spends almost all of his time hopping around the globe to bring joy to homes on Earth, he also makes a magical stop at the International Space Station (ISS). At a special moment during his journey, the Easter Bunny uses his Easter-powered jetpack to travel from Earth into space. He makes a brief stop at the ISS to deliver Easter baskets and eggs to the astronauts aboard, ensuring that even those high above the Earth get a special Easter treat. After his delivery, the Easter Bunny quickly returns to Earth, thanks to his trusty jetpack, and continues his journey around the world. It’s an exciting and unique part of his magical route, adding an extra cosmic twist to his already incredible adventure!
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">bed</span>
+                <h3>Do I have to be asleep for the Easter Bunny to come?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                No, you don't have to be asleep, but it's recommended! The Easter Bunny does his best work when children are asleep, so he can surprise them with baskets and eggs when they wake up. If you're awake and not trying to catch him, he'll still deliver your baskets, but you might catch a glimpse of his magic in action! It's best to go to sleep an hour or two before the estimated arrival time to ensure the Bunny's surprise works as planned!
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">home_work</span>
+                <h3>What happens if I'm not home by the time the Easter Bunny arrives?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                The Easter Bunny has supernatural memory and knows exactly where to deliver your basket, even if you're not home. If you're out for a bit, don't worry! Your Easter basket will still be waiting for you when you return home. The Easter Bunny doesn't need to see you to deliver the magic, so whether you're asleep or away, your basket will always be there when you get back!
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">battery_horiz_075</span>
+                <h3>Does the Easter Bunny ever get tired?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                No, the Easter Bunny doesn't get tired. His magical energy keeps him going through the entire 25-hour journey. While he works hard to deliver baskets to billions of homes, he is fueled by the joy of spreading Easter cheer. He has an endless supply of energy, allowing him to work his magic all night long without rest!
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">luggage</span>
+                <h3>How does the Easter Bunny carry all those baskets?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                The Easter Bunny's bag is magical—it's enchanted to hold an infinite amount of baskets and eggs. The Bunny's helpers fill the bag at Easter Island, and the bag expands to accommodate all the items. It's a kind of bottomless bag that allows the Bunny to carry billions of baskets without ever running out of space!
+            </div>
+        </div>
+    </div>
+<!-- Orthodox Easter Section -->
+    <div class="faq-section">
+        <div class="section-header">
+            <span class="material-symbols-rounded">church</span>
+            <h2>Orthodox Easter FAQs</h2>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">church</span>
+                <h3>What is Orthodox Easter?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                Orthodox Easter is a Christian holiday celebrated by Orthodox Christian churches, which includes the Eastern Orthodox Church and Oriental Orthodox churches. It usually falls on a different date than Western Christian Easter because the Orthodox Church uses the Julian calendar instead of the Gregorian calendar. Orthodox Easter celebrates the resurrection of Jesus Christ, just like Western Easter, but it's observed with different traditions, dates, and customs.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">cruelty_free</span>
+                <h3>Does the Easter Bunny make a second run for Orthodox Easter?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                Yes, it is known that the Easter Bunny makes a second run around the world for Orthodox Easter! While most people celebrate Easter on the Western Christian date, the Easter Bunny also makes sure to deliver baskets to the children celebrating Orthodox Easter, hopping across the world once more to spread joy and Easter goodies. So, no worries – you'll get another chance to track him!
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">track_changes</span>
+                <h3>Is there an Orthodox Easter Bunny Tracker?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                Unfortunately, the Orthodox Easter Bunny Tracker from track.easterbunny.cc (track.orthodoxbunny.cc) was shut down after Easter 2023. Currently, we aren't aware of any other websites specifically dedicated to tracking the Easter Bunny's Orthodox Easter run. However, we might be creating one for Easter 2026, so keep an eye out! For this year, we're focused on just one Bunny Tracker for Easter 2025, but who knows? We may have an Orthodox Easter Tracker in the future!
+            </div>
+        </div>
+    </div>
+
+    <!-- Website Section -->
+    <div class="faq-section">
+        <div class="section-header">
+            <span class="material-symbols-rounded">web</span>
+            <h2>Website FAQs</h2>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">font_download</span>
+                <h3>Why does the font of the tracker look weird?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                The tracker uses Google Fonts API to load the fonts, which gives the site its clean and modern look. However, if you notice any weird fonts or the text seems off, it could be due to your browser or network blocking fonts.googleapis.com. To fix this, make sure that the domain is unblocked in your browser or network settings. If you use a DNS blocker like Pi-hole, make sure this service isn't blocking font resources either. If it isn't blocked, try refreshing the page. Once that's fixed, the fonts should load correctly!
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">translate</span>
+                <h3>Is the tracker available in another language?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                At the moment, the tracker is only available in English, and there aren't any immediate plans for additional language support. However, if you're comfortable with a browser translation feature, we recommend using that for a translated version of the tracker. Just be aware that automatic translations might not provide the best tracking experience and some elements may not translate perfectly, but it will help if you need it!
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">games</span>
+                <h3>Why is there no fun content on the site?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                The tracker is our main focus, and we've dedicated most of our resources to providing a smooth, accurate tracking experience, so we've intentionally kept the site more streamlined to prioritize the tracker's functionality. For games and fun activities, we recommend visiting other websites with Easter games and then returning to the tracker on Easter Eve for the ultimate Bunny tracking experience!
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">live_tv</span>
+                <h3>Can I stream the tracker to YouTube or another platform?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                Yes! You're welcome to stream the tracker on platforms like YouTube, Twitch, or any other streaming service you use. We suggest adding the tracker's link to your stream description so others can easily find it. Tip: We suggest you disable the estimated arrival time metric in the settings to avoid revealing your location. Have fun streaming to share the magic of Easter Bunny tracking with the world!
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">image</span>
+                <h3>Can I download the icons and use them for thumbnails, stream trailers, etc.?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                Definitely! The icons used on the tracker are from Flaticon. You can download the icons from these links below and use them for your own projects, such as stream thumbnails or trailers. Just remember, the icons are attributed to Freepik, the author, so please be sure to include attribution wherever you use the icons (like in your video/stream description).
+
+<a href="https://www.flaticon.com/free-icon/rabbit_7226220">🐰 Easter Bunny icon</a> • <a href="https://www.flaticon.com/free-icon/basket_7226114">🧺 Basket icon</a> • <a href="https://www.flaticon.com/free-icon/carrot_7226674">🥕 Carrot icon</a> • <a href="https://www.flaticon.com/packs/easter-197">🌸 Pack with all icons (If you want more Easter icons in the same style)</a>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">code</span>
+                <h3>Is the tracker open-source?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                Yes! The source code for the tracker is open-source, and you're welcome to use it for your own projects, modify it, or create a similar tracker of your own. You can find the code on GitHub here: https://github.com/speechless-parrot/bunny-journey-tracking. Feel free to check it out and contribute or build upon it!
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">phone_iphone</span>
+                <h3>Does the tracker work on mobile devices?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                Yes, the tracker is fully mobile-compatible! You can visit the tracker from any smartphone or tablet and use it just as you would on a desktop. For the best mobile experience, you can even install the tracker as a progressive web app (PWA) on your phone by adding it to your home screen. This way, the tracker feels like a native app and gives you a seamless, full-screen experience.
+            </div>
+        </div>
+    </div>
+
+    <!-- Santa Section -->
+    <div class="faq-section">
+        <div class="section-header">
+            <span class="material-symbols-rounded">featured_seasonal_and_gifts</span>
+            <h2>Santa FAQs</h2>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">group</span>
+                <h3>Are Santa and the Easter Bunny friends?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                Yes, Santa and the Easter Bunny are actually great friends! They share the same mission of spreading joy and gifts around the world, though their methods and timing are different. Santa delivers presents on Christmas Eve, while the Easter Bunny hops around on Easter Eve. Despite their busy schedules, they often cross paths and enjoy a little chat about their respective journeys. It's said that they even exchange tips on how to deliver gifts efficiently!
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span class="material-symbols-rounded">track_changes</span>
+                <h3>Do you have a Santa tracker?</h3>
+                <span class="material-symbols-rounded toggle-icon">expand_more</span>
+            </div>
+            <div class="faq-answer">
+                Not at the moment! While our focus is on the Easter Bunny and his magical journey, there are plenty of awesome Santa trackers out there, including the official Google Santa Tracker! You can visit it here: https://santatracker.google.com for all the fun and excitement of tracking Santa's global voyage on Christmas Eve!
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script>
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isOpen = answer.classList.contains('show');
+                
+                // Close all other answers
+                document.querySelectorAll('.faq-answer').forEach(item => {
+                    item.classList.remove('show');
+                });
+                document.querySelectorAll('.faq-question').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Toggle current answer
+                if (!isOpen) {
+                    answer.classList.add('show');
+                    question.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

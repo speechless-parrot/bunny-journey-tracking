@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📰 News - Easter Bunny's Journey Tracking 🐰🗺️</title>
+
+<link rel="icon" type="image/png" href="icon.png">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Material Symbols -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Google Sans', sans-serif;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .news-container {
+            max-width: 1200px;
+            margin: 5rem auto 2rem;
+            padding: 1rem;
+        }
+
+        .page-title {
+            font-family: 'Fredoka', sans-serif;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #ff69b4;
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(45deg, #ff69b4, #ff8c00);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            z-index: 1000;
+        }
+
+        .back-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .back-button .material-symbols-rounded {
+            font-size: 20px;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 1rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .news-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            background: linear-gradient(45deg, #ff69b4, #ff8c00);
+            color: white;
+        }
+
+        .news-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .news-date {
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .news-content {
+            padding: 3rem;
+            color: #333;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .news-container {
+                padding: 1rem;
+                margin-top: 4rem;
+            }
+
+            .page-title {
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .back-button {
+                top: 10px;
+                left: 10px;
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+
+            .news-header {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: flex-start;
+            }
+
+            .news-title {
+                font-size: 1.25rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .back-button {
+                display: none;
+            }
+        }
+
+        /* Focus Styles */
+        .back-button:focus {
+            outline: 2px solid #ff69b4;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Back to Tracker Button -->
+    <a href="index.html" class="back-button">
+        <span class="material-symbols-rounded">arrow_back</span>
+        Back to Tracker
+    </a>
+
+    <div class="news-container">
+        <h1 class="page-title">🐰 Easter Bunny Tracker News 📰</h1>
+
+        <div class="news-card">
+            <div class="news-header">
+                <div class="news-title">
+                    <span class="material-symbols-rounded">new_releases</span>
+                    Easter Bunny&#39;s Journey Tracker upgraded to v1.1
+                </div>
+                <div class="news-date">
+                    <span class="material-symbols-rounded">schedule</span>
+                    <span>January 30, 2025</span>
+                </div>
+            </div>
+<div class="news-content">
+    <p>The Easter Bunny&#39;s Journey Tracker just got an upgrade to v1.1, and we&#39;ve added some cool new features! Here&#39;s what&#39;s new:</p>
+
+<br>
+
+    <h3>🕰️ Current local time display</h3>
+    <p>Now, in the additional stats box, you&#39;ll see the current local time of wherever the Easter Bunny is right now. (✨ Fun fact: The globe emoji next to it now dynamically updates to match the sector of the Easter Bunny&#39;s current timezone. Pretty neat, right?)</p>
+
+    <br>
+
+    <h3>🛰️ ISS stop on the map</h3>
+    <p>Did you know the Easter Bunny stops at the International Space Station too? Well, now it&#39;s easier to spot! The ISS stop on the map has a special satellite icon 🛰️ so you can easily recognize it. As we get closer to Easter Eve, we&#39;ll also update the location to show the correct position of the space station!</p>
+
+    <br>
+
+    <h3>📶 Offline tracking???</h3>
+    <p>The biggest change—now the tracker works without an internet connection! That&#39;s right, even without Wi-Fi, you can still follow the Easter Bunny&#39;s journey. How? 🤔 Using advanced algorithms, the tracker predicts the Bunny&#39;s location based on his route and past places he visited. The experience is almost identical to the online version, though there are a couple of differences. Map tiles might not load properly sometimes, and the weather &amp; Wikipedia overview features won&#39;t be available offline. But other than that, you can still keep track of the Bunny&#39;s adventure wherever you are!</p>
+
+    <br>
+
+    <p>So, check out the new features and enjoy the enhanced experience! 🐰🎉</p>
+</div>
+        </div>
+
+        <div class="news-card">
+            <div class="news-header">
+                <div class="news-title">
+                    <span class="material-symbols-rounded">celebration</span>
+                    Welcome to the Easter Bunny&#39;s Journey Tracking website from Easter Island!
+                </div>
+                <div class="news-date">
+                    <span class="material-symbols-rounded">schedule</span>
+                    <span>January 28, 2025</span>
+                </div>
+            </div>
+            <div class="news-content">
+<p>Welcome to the new <strong>Easter Bunny&#39;s Journey tracking</strong> site—we’re so excited to have you join us for the most magical Easter experience ever! 🎉✨ This year, we’re bringing you a brand-new tracker that’s powered by real-time satellite imagery 🛰️ and a sprinkle of Easter magic 🪄 to make following the Easter Bunny’s journey more fun than ever before. And guess what? The tracker is already <strong>LIVE</strong> and ready to go!  </p>
+<p>Here’s how it works:  </p>
+    <br>
+
+<ul>
+<li>The Easter Bunny starts his big day on <strong>April 19th</strong> at his secret home base on <strong>Easter Island</strong> 🏝️. That’s where he makes his final preparations before taking off to deliver baskets filled with goodies around the world!</li>
+</ul>
+    <br>
+
+<p>⏰ Here’s when pre-tracking starts:  </p>
+    <br>
+
+<ul>
+<li>🇺🇸 <strong>New York:</strong> 3:30 AM  </li>
+<li>🇦🇺 <strong>Sydney:</strong> 7:30 PM  </li>
+<li>🇯🇵 <strong>Tokyo:</strong> 5:30 PM  </li>
+<li>🇬🇧 <strong>London:</strong> 9:30 AM  </li>
+</ul>
+    <br>
+
+<p>For the first <strong>1.5 hours</strong>, during pre-tracking, we’ll be sharing updates every <strong>2.5 minutes</strong> straight from Easter Island. You’ll get a sneak peek at what the Bunny’s up to—think of it as your exclusive backstage pass to Easter magic! 🎟️🐰  </p>
+<p>🚀 <strong>When does the Bunny lift off?</strong><br>After pre-tracking, the Easter Bunny officially begins his worldwide adventure! 🌍 This is when the real fun starts—we’ll track his journey in <strong>real time</strong> so you’ll always know exactly where he is 🗺️, how many baskets he’s delivered 🎁, even how many carrots he’s eaten 🥕 along the way, and more!  </p>
+<p>The Bunny will be working hard all through Easter Eve and some of Easter Day before returning to Easter Island on <strong>April 20th</strong> at these times:  </p>
+    <br>
+<ul>
+<li>🇺🇸 <strong>New York:</strong> 6:10 AM  </li>
+<li>🇦🇺 <strong>Sydney:</strong> 10:10 PM  </li>
+<li>🇯🇵 <strong>Tokyo:</strong> 8:10 PM  </li>
+<li>🇬🇧 <strong>London:</strong> 12:10 PM  </li>
+</ul>
+    <br>
+
+<p>But the fun doesn’t stop there! Once the Bunny completes his journey, the tracker stays open year-round. You’ll be able to explore his entire route 🗺️, see all the cities he visited 🏙️, check how many baskets he delivered 🧺, how many carrots he munched on 🥕, and even how far he traveled 🐇. Oh, and the countdown will reset a week later, so we can start getting ready for <strong>Easter 2026</strong>! 🎉  </p>
+    <br>
+
+<p>While we wait for liftoff (just <strong>80 days to go</strong>!), there are some things you can do on the website to get into the Easter spirit:  </p>
+    <br>
+
+<ul>
+<li>⏰ <strong>Countdown to Liftoff:</strong> Click the clock icon 🕒 at the top right of the tracker to see a full-screen countdown!  </li>
+<li>🌍 <strong>Explore the Map:</strong> Unlock the Bunny’s route in advance by clicking the lock icon 🔓 at the top right. You can explore freely all the places he’ll visit!  </li>
+<li>💬 <strong>Chat with the Easter Bunny:</strong> Check out our fun <a href="chat.html">Chat with the Easter Bunny</a> page to get into the Easter mood early. Who knows? Maybe he’ll share some secrets! 🤫  </li>
+</ul>
+    <br>
+
+<p><strong>Here are some tips for tracking day to make the most of your experience:</strong>  </p>
+<p>🔄 <strong>No need to refresh!</strong> The tracker updates every second automatically. Just sit back, relax, and enjoy the magic! ✨<br>🔍 <strong>Zoom smartly:</strong> You can zoom in or out on the tracking map, even while centered on the Easter Bunny! Just remember: don’t zoom too far or it will be constantly loading in map tiles and you&#39;ll have a poor experience.<br>⚙️ <strong>Set it up beforehand:</strong> Customize your tracker settings before liftoff so everything is perfect. Your settings are saved automatically on your device, but they won’t sync between different devices or browsers. Pro tip: Set them up the same way on all your devices for the best experience! 📱💻  </p>
+<p>We can’t wait to share this amazing Easter adventure with you! 💖 From the first hop 🐾 to the last carrot 🥕, you’ll be right there alongside the Easter Bunny as he spreads joy around the globe 🌐.  </p>
+    <br>
+<p>Let the countdown begin, friends! 🕒🐰 Get ready for an unforgettable Easter Eve ✨</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
