@@ -1581,6 +1581,223 @@ h1, h2, h3, h4, h5, h6,
 #offline-notification.fade-out {
   opacity: 0;
 }
+/* Mobile Stats Container */
+.stats-container-mobile {
+    display: none; /* Hidden by default */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 12px;
+    z-index: 1000;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile Header Section */
+.mobile-header-section {
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.mobile-stop-info {
+    margin-bottom: 4px;
+}
+
+.mobile-stop-label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.mobile-stop-value {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-top: 2px;
+}
+
+.mobile-meta-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 8px;
+}
+
+.mobile-time-weather {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.mobile-time-weather .divider {
+    margin: 0 4px;
+    opacity: 0.5;
+}
+
+.mobile-status {
+    text-align: right;
+    font-size: 0.85rem;
+}
+
+/* Mobile Stats Grid */
+.mobile-stats-section {
+    padding: 8px 0;
+}
+
+.mobile-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.mobile-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.mobile-stat .mobile-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.mobile-stat .material-symbols-rounded {
+    font-size: 20px;
+    color: #ff69b4;
+}
+
+.mobile-stat span:last-child {
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* Mobile Arrival Section */
+.mobile-arrival-section {
+    font-size: 0.85rem;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode support */
+[data-theme="dark"] .stats-container-mobile {
+    background: rgba(30, 30, 30, 0.95);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .mobile-stop-label,
+[data-theme="dark"] .mobile-meta-info,
+[data-theme="dark"] .mobile-arrival-section {
+    color: #aaa;
+}
+
+[data-theme="dark"] .mobile-stop-value {
+    color: #fff;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .stats-container {
+        display: none; /* Hide desktop stats */
+    }
+    
+    .stats-container-mobile {
+        display: block; /* Show mobile stats */
+    }
+
+    /* Adjust map height to account for mobile stats */
+    #map {
+        height: calc(100vh - 130px); /* Adjust based on your mobile stats height */
+    }
+}
+
+/* Smaller screens */
+@media (max-width: 480px) {
+    .mobile-stats-grid {
+        grid-template-columns: repeat(2, 1fr); /* Stack in two columns on very small screens */
+        gap: 12px;
+    }
+
+    .mobile-meta-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    .mobile-status {
+        text-align: left;
+        margin-top: 4px;
+    }
+}
+
+/* Add safe area padding for modern mobile browsers */
+@supports (padding: max(0px)) {
+    .stats-container-mobile {
+        padding-bottom: max(12px, env(safe-area-inset-bottom));
+    }
+}
+
+/* Add to your existing mobile CSS */
+.mobile-arrival-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.mobile-last-seen {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 4px;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.last-seen-label {
+    font-weight: 500;
+}
+
+.mobile-arrival-section {
+    cursor: pointer;
+    padding: 8px 0;
+    transition: opacity 0.2s ease;
+}
+
+.mobile-arrival-section:hover {
+    opacity: 0.8;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+/* Dark mode updates */
+[data-theme="dark"] .mobile-last-seen {
+    color: #aaa;
+}
+
+/* Adjust the meta info layout */
+.mobile-meta-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+}
+
+.mobile-time-weather {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
 </style>
 </head>
 <body>
@@ -1870,6 +2087,67 @@ h1, h2, h3, h4, h5, h6,
         <div class="stat-value" id="weatherValue">Loading...</div>
     </div>
 </div>
+</div>
+
+<div class="stats-container-mobile">
+    <!-- Current/Next Stop Section -->
+    <div class="mobile-header-section">
+        <div class="mobile-stop-info">
+            <div class="mobile-stop-label" id="currentStopLabel-mobile">
+                <span class="material-symbols-rounded">location_on</span>
+                <span class="label-text">Current stop</span>
+            </div>
+            <div class="mobile-stop-value" id="currentStopValue-mobile">Finding the Easter Bunny...</div>
+        </div>
+        
+        <div class="mobile-meta-info">
+            <div class="mobile-time-weather">
+                <span class="material-symbols-rounded">schedule</span>
+                <span id="timezoneValue-mobile">Loading...</span>
+                <span class="divider">•</span>
+                <span class="material-symbols-rounded">thermostat</span>
+                <span id="weatherValue-mobile">Loading...</span>
+                <span class="divider">•</span>
+                <span class="mobile-arrival-status">
+                    <span id="departingLabel-mobile" class="material-icons">flight_takeoff</span>
+                    <span id="departingValue-mobile">Loading...</span>
+                </span>
+            </div>
+            <div class="mobile-last-seen">
+                <span class="material-symbols-rounded">history</span>
+                <span class="last-seen-label">Last seen</span>
+                <span id="lastSeenValue-mobile">-</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="mobile-stats-section">
+        <div class="mobile-stats-grid">
+            <div class="mobile-stat">
+                <img src="https://cdn-icons-png.flaticon.com/512/7226/7226114.png" alt="🧺" class="mobile-icon">
+                <span id="presentsValue-mobile">0</span>
+            </div>
+            <div class="mobile-stat">
+                <img src="https://cdn-icons-png.flaticon.com/512/7226/7226674.png" alt="🥕" class="mobile-icon">
+                <span id="cookiesValue-mobile">0</span>
+            </div>
+            <div class="mobile-stat">
+                <span class="material-symbols-rounded">route</span>
+                <span id="distanceValue-mobile">0 km</span>
+            </div>
+            <div class="mobile-stat">
+                <span class="material-symbols-rounded">speed</span>
+                <span id="currentSpeedValue-mobile">0 km/h</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Arrival Section -->
+    <div class="mobile-arrival-section" id="arrivalSection-mobile">
+        <span class="material-symbols-rounded">access_time_filled</span>
+        <span id="arrivalValue-mobile" class="clickable">🔍 Click here to reveal when the Easter Bunny will arrive! 🐰</span>
+    </div>
 </div>
 
 </div>
@@ -2784,9 +3062,10 @@ function updateArrivalMessage() {
     }
 }
 
-// Function to handle location access
+// Update the handleLocationAccess function to update both desktop and mobile
 async function handleLocationAccess() {
     const arrivalValue = document.getElementById('arrivalValue');
+    const arrivalValueMobile = document.getElementById('arrivalValue-mobile');
     
     if (LOCATION_TEST_MODE) {
         userLocation = TEST_COORDINATES;
@@ -2796,7 +3075,9 @@ async function handleLocationAccess() {
     }
     
     if (!navigator.geolocation) {
-        arrivalValue.innerHTML = '📱 Oops! Your browser doesn\'t support location services. Unable to estimate arrival time.';
+        const message = '📱 Oops! Your browser doesn\'t support location services. Unable to estimate arrival time.';
+        arrivalValue.innerHTML = message;
+        arrivalValueMobile.innerHTML = message;
         return;
     }
     
@@ -2814,11 +3095,12 @@ async function handleLocationAccess() {
         updateArrivalMessage();
         
     } catch (error) {
-        if (error.code === 1) {
-            arrivalValue.innerHTML = '🔒 Location access denied. Please enable location services and try clicking again to see when the Easter Bunny will visit!';
-        } else {
-            arrivalValue.innerHTML = '❌ Unable to get your location. Click to try again!';
-        }
+        const message = error.code === 1
+            ? '🔒 Location access denied. Please enable location services and try clicking again to see when the Easter Bunny will visit!'
+            : '❌ Unable to get your location. Click to try again!';
+        
+        arrivalValue.innerHTML = message;
+        arrivalValueMobile.innerHTML = message;
     }
 }
 
@@ -4262,6 +4544,75 @@ window.addEventListener('online', () => {
     document.body.classList.remove('offline-mode');
   }
 });
+
+// Add to your existing update functions
+function updateMobileStats() {
+    // Sync stop info and icon
+    const currentStopLabel = document.getElementById('currentStopLabel');
+    const mobileStopLabel = document.getElementById('currentStopLabel-mobile');
+    mobileStopLabel.querySelector('.material-symbols-rounded').textContent = 
+        currentStopLabel.querySelector('.material-symbols-rounded').textContent;
+    mobileStopLabel.querySelector('.label-text').textContent = 
+        currentStopLabel.textContent.trim().replace(/^\S+\s+/, '');
+    
+    document.getElementById('currentStopValue-mobile').textContent = 
+        document.getElementById('currentStopValue').textContent;
+    
+    // Sync departing/arriving status
+    const departingLabel = document.getElementById('departingLabel');
+    const mobileDepartingLabel = document.getElementById('departingLabel-mobile');
+    mobileDepartingLabel.textContent = 
+        departingLabel.querySelector('.material-icons').textContent;
+    
+    document.getElementById('departingValue-mobile').textContent = 
+        document.getElementById('departingValue').textContent;
+    
+    // Sync last seen
+    document.getElementById('lastSeenValue-mobile').textContent = 
+        document.getElementById('lastSeenValue').textContent;
+    
+    // Sync stats
+    document.getElementById('presentsValue-mobile').textContent = 
+        document.getElementById('presentsValue').textContent;
+    document.getElementById('cookiesValue-mobile').textContent = 
+        document.getElementById('cookiesValue').textContent;
+    document.getElementById('distanceValue-mobile').textContent = 
+        document.getElementById('distanceValue').textContent;
+    document.getElementById('currentSpeedValue-mobile').textContent = 
+        document.getElementById('currentSpeedValue').textContent;
+    
+    // Sync time and weather
+    document.getElementById('timezoneValue-mobile').textContent = 
+        document.getElementById('timezoneValue').textContent;
+    document.getElementById('weatherValue-mobile').textContent = 
+        document.getElementById('weatherValue').textContent;
+    
+    // Sync arrival
+    document.getElementById('arrivalValue-mobile').textContent = 
+        document.getElementById('arrivalValue').textContent;
+}
+
+// Add click handler for mobile arrival estimator
+function initializeMobileArrivalEstimator() {
+    const arrivalSection = document.getElementById('arrivalSection-mobile');
+    const arrivalValue = document.getElementById('arrivalValue-mobile');
+    
+    arrivalSection.addEventListener('click', () => {
+        if (!userLocation) {
+            handleLocationAccess();
+        }
+    });
+}
+
+// Update your DOMContentLoaded event listener to include mobile initialization
+document.addEventListener('DOMContentLoaded', () => {
+    initializeMobileArrivalEstimator();
+});
+
+
+// Add this to your existing update cycle
+setInterval(updateMobileStats, 1000); // Update every second ⏱️
+
     </script>
 </body>
 </html>
