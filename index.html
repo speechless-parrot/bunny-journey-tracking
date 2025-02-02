@@ -1845,6 +1845,7 @@ h1, h2, h3, h4, h5, h6,
 [data-theme="dark"] .meta-info-mobile {
     color: #aaa;
 }
+
 </style>
 </head>
 <body>
@@ -2062,6 +2063,7 @@ h1, h2, h3, h4, h5, h6,
     </div>
 
 <div class="stats-container">
+
 <div class="stat-item stop-details-card">
 
     <div class="last-seen-section">
@@ -2829,7 +2831,6 @@ function updatePreTrackingStatus(now) {
         if (metaIcon && metaLabel && metaValue) {
             metaIcon.textContent = 'history';
             metaLabel.textContent = 'Last seen:';
-            metaValue.textContent = formatLastSeen(lastUpdate);
         }
         return;
     }
@@ -3007,7 +3008,7 @@ const TEST_LOCATIONS = {
     petra: { lat: 30.3285, lng: 35.4444 },         // Petra, Jordan - Ancient city
     angkor: { lat: 13.4125, lng: 103.8670 },       // Angkor Wat, Cambodia
     machu_picchu: { lat: -13.1631, lng: -72.5450 }, // Machu Picchu, Peru
-    // Space???   🚀
+    // Space??? 🚀
     iss: { 
         lat: -25.1162, 
         lng: -43.1948, 
@@ -3053,7 +3054,7 @@ function roundToQuarterHour(hours) {
 function createTimeRange(date) {
     const minutes = date.getMinutes();
     if ([0, 10, 20, 30, 40, 50].includes(minutes)) {
-        return formatArrivalTime(date);
+        return `arriving around ${formatArrivalTime(date)};`
     }
     
     const roundDown = new Date(date);
@@ -3061,7 +3062,7 @@ function createTimeRange(date) {
     const roundUp = new Date(date);
     roundUp.setMinutes(Math.ceil(minutes / 10) * 10);
     
-    return `${roundDown.toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })} - ${roundUp.toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })}`;
+    return `arriving between ${roundDown.toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })} - ${roundUp.toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true })}`;
 }
 
 // Function to find nearest stop
@@ -3100,7 +3101,7 @@ function updateArrivalMessage() {
     
     // Easter Bunny already visited
     if (now >= arrivalTime) {
-        arrivalValue.innerHTML = `🎉 The Easter Bunny arrived at around ${formatArrivalTime(arrivalTime)}! Hope you enjoyed (or will enjoy) the fun egg hunt and see you next year! 🥚🌸`;
+        arrivalValue.innerHTML = `🎉 The Easter Bunny arrived at around ${formatArrivalTime(arrivalTime)}!`;
         return;
     }
     
@@ -3110,11 +3111,12 @@ function updateArrivalMessage() {
     if (hoursUntil <= 1) {
         const timeRange = createTimeRange(arrivalTime);
         if (isNextStop) {
-            arrivalValue.innerHTML = `🌟 EGGS-CITING NEWS! The Easter Bunny is hopping straight to your area next! Get ready, and ensure you have your carrots out! 🥕🐰✨`;
+            arrivalValue.innerHTML = `🌟 EGGS-CITING NEWS! The Easter Bunny is hopping straight to your area next, get ready!`;
         } else {
-            arrivalValue.innerHTML = `🌸 The Easter Bunny will be hopping to you ${timeRange}! 🐰🥚`;
+            arrivalValue.innerHTML = `🌸 The Easter Bunny will arrive soon (${timeRange})`;
         }
-    } else {
+    } else if (hoursUntil <= 48) {
+        // Handle hours (original logic)
         const roundedHours = roundToQuarterHour(hoursUntil);
         const hourText = roundedHours === 1 ? 'hour' : 'hours';
         const fractionPart = roundedHours % 1;
@@ -3125,7 +3127,18 @@ function updateArrivalMessage() {
         else if (fractionPart === 0.5) timeText = `${Math.floor(roundedHours)}½`;
         else timeText = `${Math.floor(roundedHours)}¾`;
         
-        arrivalValue.innerHTML = `🌸 The Easter Bunny will arrive to deliver your baskets and eggs in about ${timeText} ${hourText} 🧺✨`;
+        arrivalValue.innerHTML = `🌸 The Easter Bunny will arrive in about ${timeText} ${hourText}`;
+    } else {
+        // Handle days (new logic)
+        const days = Math.floor(hoursUntil / 24);
+        const remainingHours = hoursUntil % 24;
+        const roundedHours = roundToQuarterHour(remainingHours);
+        
+        if (roundedHours === 0) {
+            arrivalValue.innerHTML = `🐰 The Easter Bunny will arrive in ${days} ${days === 1 ? 'day' : 'days'}`;
+        } else {
+            arrivalValue.innerHTML = `🐰 The Easter Bunny will arrive in ${days} ${days === 1 ? 'day' : 'days'} and about ${roundedHours} ${roundedHours === 1 ? 'hour' : 'hours'}`;
+        }
     }
 }
 
@@ -3771,7 +3784,7 @@ function getCurrentDateTime() {
         return new Date(
             now.getFullYear(),  // Current year
             3,                  // April (0-based)
-            20,                 // 19th
+            19,                 // 19th
             now.getUTCHours(), // Replace with now.getUTCHours() for current hour
             now.getUTCMinutes(),
             now.getUTCSeconds()
@@ -4627,7 +4640,7 @@ function updateMobileStats() {
 
     // Determine whether to show Easter Island status or last seen
     if (now >= trackingEnd) {
-        // Show last seen
+        // Show last seen (last stop)
         metaIcon.textContent = 'history';
         metaLabel.textContent = 'Last seen:';
         metaValue.textContent = document.getElementById('lastSeenValue').textContent;
