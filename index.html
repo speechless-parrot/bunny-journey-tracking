@@ -3518,8 +3518,8 @@ function updateMarkerStates() {
         const earliestArrival = Math.min(...stops.map(stop => stop.arrival));
         const latestDeparture = Math.max(...stops.map(stop => stop.departure));
 
-        // Check if the location is the International Space Station
-        const isISS = stops.some(stop => stop.City === "International Space Station");
+        // Check if the location is the International Space Station or Bunny Journey's Tracking Satelite stop
+        const isISS = stops.some(stop => stop.Region === "Low Earth Orbit");
 
         // Determine marker state
         const hasVisited = now >= latestDeparture * 1000;
@@ -3774,7 +3774,7 @@ function updateCounterDisplays(newBaskets, newCarrots) {
 
 
 // Test mode toggle 🧪
-const TEST_MODE = true; // Set to true to simulate April 19th
+const TEST_MODE = false; // Set to true to simulate April 19th
 
 // Helper function to get current date/time (real or test mode) 🕒
 function getCurrentDateTime() {
@@ -4009,9 +4009,8 @@ if (lastStop && lastStop.City === "Easter Bunny's Workshop") {
     const presentsValue = document.getElementById('presentsValue');
     const cookiesValue = document.getElementById('cookiesValue');
 
-    // Set the text content to "Currently unavailable"
-    presentsValue.textContent = "❌ Currently unavailable (tracking baskets delivered starts soon)";
-    cookiesValue.textContent = "❌ Currently unavailable (tracking carrots eaten starts soon)";
+    presentsValue.textContent = "0";
+    cookiesValue.textContent = "0";
 
     // Skip the update logic for basket and carrot counts
 } else {
