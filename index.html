@@ -1797,7 +1797,54 @@ h1, h2, h3, h4, h5, h6,
     justify-content: flex-start;
     flex-wrap: wrap;
 }
+.mobile-stat-item {
+    padding: 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
 
+.mobile-stat-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+}
+
+.mobile-stat-value {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* Dark mode support */
+[data-theme="dark"] .mobile-stat-item {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .mobile-stat-label {
+    color: #aaa;
+}
+
+[data-theme="dark"] .mobile-stat-value {
+    color: #fff;
+}
+.meta-info-mobile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: #666;
+    padding: 8px 0;
+}
+
+.meta-label-mobile {
+    color: inherit;
+}
+
+/* Dark mode support */
+[data-theme="dark"] .meta-info-mobile {
+    color: #aaa;
+}
 </style>
 </head>
 <body>
@@ -2113,11 +2160,11 @@ h1, h2, h3, h4, h5, h6,
                     <span id="departingValue-mobile">Loading...</span>
                 </span>
             </div>
-            <div class="mobile-last-seen">
-                <span class="material-symbols-rounded">history</span>
-                <span class="last-seen-label">Last seen</span>
-                <span id="lastSeenValue-mobile">-</span>
-            </div>
+<div class="meta-info-mobile">
+    <span class="material-symbols-rounded" id="metaIcon-mobile">history</span>
+    <span class="meta-label-mobile" id="metaLabel-mobile">Last seen:</span>
+    <span id="metaValue-mobile">-</span>
+</div>
         </div>
     </div>
 
@@ -2740,11 +2787,23 @@ function isPreTrackingTime(now) {
 function updatePreTrackingStatus(now) {
     const statusStat = document.querySelector('.status-stat');
     const statusValue = document.getElementById('statusValue');
+
+    // Get mobile meta elements
+    const metaIcon = document.getElementById('metaIcon-mobile');
+    const metaLabel = document.getElementById('metaLabel-mobile');
+    const metaValue = document.getElementById('metaValue-mobile');
     
     // Helper function to update status text and handle size
     function updateStatusText(text) {
         statusValue.classList.toggle('long-update', text.length > 125);
         statusValue.innerHTML = text;
+
+        // Update mobile meta info with Easter Island status
+        if (metaIcon && metaLabel && metaValue) {
+            metaIcon.textContent = 'history';
+            metaLabel.textContent = 'Last seen:';
+            metaValue.innerHTML = text;
+        }
     }
     
     const { easterEveDate } = getEasterDates();
@@ -2762,6 +2821,19 @@ function updatePreTrackingStatus(now) {
         updateWeather(easterIslandPosition[0], easterIslandPosition[1]);
     }
 
+    // If tracking has ended, switch to last seen
+    if (getCurrentDateTime() >= trackingEnd) {
+        statusStat.style.display = 'none';
+        
+        // Switch mobile display to last seen
+        if (metaIcon && metaLabel && metaValue) {
+            metaIcon.textContent = 'history';
+            metaLabel.textContent = 'Last seen:';
+            metaValue.textContent = formatLastSeen(lastUpdate);
+        }
+        return;
+    }
+
     if (statusStat) {
         statusStat.style.display = settings.metrics.islandStatus ? 'block' : 'none';
     }
@@ -2769,11 +2841,6 @@ function updatePreTrackingStatus(now) {
     if (getCurrentDateTime() < trackingStart) {
         const countdown = Math.max(0, Math.floor((trackingStart - getCurrentDateTime()) / 1000));
         updateStatusText(`⏳ Pre-tracking begins in ${formatCountdown(countdown)}`);
-        return;
-    }
-    
-    if (getCurrentDateTime() >= trackingEnd) {
-        statusStat.style.display = 'none';
         return;
     }
 
@@ -3694,7 +3761,7 @@ function updateCounterDisplays(newBaskets, newCarrots) {
 
 
 // Test mode toggle 🧪
-const TEST_MODE = false; // Set to true to simulate April 19th
+const TEST_MODE = true; // Set to true to simulate April 19th
 
 // Helper function to get current date/time (real or test mode) 🕒
 function getCurrentDateTime() {
@@ -3704,7 +3771,7 @@ function getCurrentDateTime() {
         return new Date(
             now.getFullYear(),  // Current year
             3,                  // April (0-based)
-            19,                 // 19th
+            20,                 // 19th
             now.getUTCHours(), // Replace with now.getUTCHours() for current hour
             now.getUTCMinutes(),
             now.getUTCSeconds()
@@ -4547,6 +4614,30 @@ window.addEventListener('online', () => {
 
 // Add to your existing update functions
 function updateMobileStats() {
+    // Get current time and tracking end time
+    const now = getCurrentDateTime();
+    const { easterEveDate } = getEasterDates();
+    const trackingEnd = new Date(easterEveDate);
+    trackingEnd.setHours(10, 0, 0, 0); // 10:00 AM UTC
+
+    // Get mobile meta elements
+    const metaIcon = document.getElementById('metaIcon-mobile');
+    const metaLabel = document.getElementById('metaLabel-mobile');
+    const metaValue = document.getElementById('metaValue-mobile');
+
+    // Determine whether to show Easter Island status or last seen
+    if (now >= trackingEnd) {
+        // Show last seen
+        metaIcon.textContent = 'history';
+        metaLabel.textContent = 'Last seen:';
+        metaValue.textContent = document.getElementById('lastSeenValue').textContent;
+    } else {
+        // Show Easter Island status
+        metaIcon.textContent = 'history';
+        metaLabel.textContent = 'Last seen:';
+        metaValue.innerHTML = document.getElementById('statusValue').innerHTML;
+    }
+
     // Sync stop info and icon
     const currentStopLabel = document.getElementById('currentStopLabel');
     const mobileStopLabel = document.getElementById('currentStopLabel-mobile');
@@ -4566,10 +4657,6 @@ function updateMobileStats() {
     
     document.getElementById('departingValue-mobile').textContent = 
         document.getElementById('departingValue').textContent;
-    
-    // Sync last seen
-    document.getElementById('lastSeenValue-mobile').textContent = 
-        document.getElementById('lastSeenValue').textContent;
     
     // Sync stats
     document.getElementById('presentsValue-mobile').textContent = 
@@ -4615,4 +4702,3 @@ setInterval(updateMobileStats, 1000); // Update every second ⏱️
 
     </script>
 </body>
-</html>
