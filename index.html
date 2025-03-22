@@ -2592,7 +2592,7 @@ function initializeDistance(now) {
     totalDistance = 0;
     const { easterEveDate } = getEasterDates();
     const easterEveStart = new Date(easterEveDate);
-    easterEveStart.setHours(10, 0, 0, 0);
+    easterEveStart.setUTCHours(10, 0, 0, 0);
 
     // If journey hasn't started, set to 0
     if (now < easterEveStart) {
@@ -2776,10 +2776,10 @@ async function fetchPreTrackingData() {
 function isPreTrackingTime(now) {
     const { easterEveDate } = getEasterDates();
     const trackingStart = new Date(easterEveDate);
-    trackingStart.setHours(8, 30, 0, 0); // 8:30 AM UTC
+    trackingStart.setUTCHours(8, 30, 0, 0); // 8:30 AM UTC
     
     const trackingEnd = new Date(easterEveDate);
-    trackingEnd.setHours(10, 0, 0, 0); // 10:00 AM UTC
+    trackingEnd.setUTCHours(10, 0, 0, 0); // 10:00 AM UTC
     
     // Use getCurrentDateTime() for comparison
     return getCurrentDateTime() >= trackingStart && getCurrentDateTime() < trackingEnd;
@@ -2810,10 +2810,10 @@ function updatePreTrackingStatus(now) {
     
     const { easterEveDate } = getEasterDates();
     const trackingStart = new Date(easterEveDate);
-    trackingStart.setHours(8, 30, 0, 0); // 8:30 AM UTC
+    trackingStart.setUTCHours(8, 30, 0, 0); // 8:30 AM UTC
     
     const trackingEnd = new Date(easterEveDate);
-    trackingEnd.setHours(10, 0, 0, 0); // 10:00 AM UTC
+    trackingEnd.setUTCHours(10, 0, 0, 0); // 10:00 AM UTC
 
     // Easter Island weather updates
     const easterIslandPosition = [-27.1044228, -109.2489683];
@@ -3650,13 +3650,13 @@ function calculateCurrentBaskets(now, currentStop, lastStop, nextStop) {
     
     // Pre-journey
     const easterEveStart = new Date(getEasterDates().easterEveDate);
-    easterEveStart.setHours(10, 0, 0, 0);
+    easterEveStart.setUTCHours(10, 0, 0, 0);
     if (now < easterEveStart) return 0;
     
     // Post-journey
     const easterDayEnd = new Date(getEasterDates().easterEveDate);
     easterDayEnd.setDate(easterDayEnd.getDate() + 1);
-    easterDayEnd.setHours(11, 10, 0, 0);
+    easterDayEnd.setUTCHours(11, 10, 0, 0);
     if (now >= easterDayEnd) return 7706250000;
     
     // During a stop
@@ -3704,13 +3704,13 @@ function calculateCurrentCarrots(now, currentStop, lastStop, nextStop) {
     
     // Pre-journey
     const easterEveStart = new Date(getEasterDates().easterEveDate);
-    easterEveStart.setHours(10, 0, 0, 0);
+    easterEveStart.setUTCHours(10, 0, 0, 0);
     if (now < easterEveStart) return 0;
     
     // Post-journey
     const easterDayEnd = new Date(getEasterDates().easterEveDate);
     easterDayEnd.setDate(easterDayEnd.getDate() + 1);
-    easterDayEnd.setHours(11, 10, 0, 0);
+    easterDayEnd.setUTCHours(11, 10, 0, 0);
     if (now >= easterDayEnd) {
         const lastStopInJourney = [...routeData]
             .sort((a, b) => b.departure - a.departure)[0];
@@ -3774,7 +3774,7 @@ function updateCounterDisplays(newBaskets, newCarrots) {
 
 
 // Test mode toggle 🧪
-const TEST_MODE = false; // Set to true to simulate April 19th
+const TEST_MODE = true; // Set to true to simulate April 19th
 
 // Helper function to get current date/time (real or test mode) 🕒
 function getCurrentDateTime() {
@@ -3882,11 +3882,11 @@ function updateBunnyLocation() {
         const { easterEveDate, nextYearEasterEveDate } = getEasterDates();
         
         const easterEveStart = new Date(easterEveDate);
-        easterEveStart.setHours(10, 0, 0, 0); // 10:00 AM UTC
+        easterEveStart.setUTCHours(10, 0, 0, 0); // 10:00 AM UTC
         
         const easterDayEnd = new Date(easterEveDate);
         easterDayEnd.setDate(easterDayEnd.getDate() + 1);
-        easterDayEnd.setHours(11, 10, 0, 0); // 11:10 AM UTC next day
+        easterDayEnd.setUTCHours(11, 10, 0, 0); // 11:10 AM UTC next day
         
         // Update stats container elements
         const currentStopLabel = document.querySelector('#currentStopLabel');
@@ -4630,7 +4630,7 @@ function updateMobileStats() {
     const now = getCurrentDateTime();
     const { easterEveDate } = getEasterDates();
     const trackingEnd = new Date(easterEveDate);
-    trackingEnd.setHours(10, 0, 0, 0); // 10:00 AM UTC
+    trackingEnd.setUTCHours(10, 0, 0, 0); // 10:00 AM UTC
 
     // Get mobile meta elements
     const metaIcon = document.getElementById('metaIcon-mobile');
@@ -4711,6 +4711,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Add this to your existing update cycle
 setInterval(updateMobileStats, 1000); // Update every second ⏱️
-
     </script>
 </body>
+</html>
