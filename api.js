@@ -243,14 +243,30 @@ async function generateBunnyAPI() {
             }
         };
 
-        // Output JSON response 📤
-        document.write(JSON.stringify(apiResponse, null, 2));
+        // Set proper JSON headers
+        document.head.innerHTML = '';  // Clear any default headers
+        const headers = document.createElement('meta');
+        headers.httpEquiv = 'Content-Type';
+        headers.content = 'application/json; charset=utf-8';
+        document.head.appendChild(headers);
+
+        // Return JSON response properly
+        const jsonResponse = JSON.stringify(apiResponse, null, 2);
+        document.body.textContent = jsonResponse;  // This is cleaner than document.write
     } catch (error) {
-        console.error('Error generating API response:', error);
-        document.write(JSON.stringify({
+        // Set error headers
+        document.head.innerHTML = '';
+        const headers = document.createElement('meta');
+        headers.httpEquiv = 'Content-Type';
+        headers.content = 'application/json; charset=utf-8';
+        document.head.appendChild(headers);
+
+        // Return error JSON
+        const errorResponse = JSON.stringify({
             error: "Failed to generate Easter Bunny tracking data",
             details: error.message
-        }));
+        }, null, 2);
+        document.body.textContent = errorResponse;
     }
 }
 
